@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galerie Foto | Epics PhotoBooth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.2.0/tabler-icons.min.css"/>
+  <style>
+    /* --------------------------------------------------------
+       BAZA
+    -------------------------------------------------------- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #f9f9f8;
+      --surface:  #ffffff;
+      --surface2: #f3f3f1;
+      --border:   rgba(0,0,0,.09);
+      --border-s: rgba(0,0,0,.17);
+      --text:     #1a1a18;
+      --muted:    #6b6b67;
+      --faint:    #9e9e9a;
+      --accent:   #1a56db;
+      --accent-bg:#eff4ff;
+      --radius:   10px;
+      --font:     'Inter', system-ui, sans-serif;
+      --display:  'Playfair Display', Georgia, serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --------------------------------------------------------
+       NAV
+    -------------------------------------------------------- */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      height: 58px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav__logo {
+      font-family: var(--display);
+      font-size: 17px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .nav__logo span { color: var(--accent); }
+    .nav__back {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .nav__back:hover { color: var(--text); }
+
+    /* --------------------------------------------------------
+       LOCK SCREEN
+    -------------------------------------------------------- */
+    .lock-screen {
+      min-height: calc(100vh - 58px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .lock-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 32px;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+    }
+    .lock-card__icon {
+      font-size: 48px;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .lock-card__title {
+      font-family: var(--display);
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .lock-card__sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    /* Event selector */
+    .event-select {
+      margin-bottom: 16px;
+    }
+    .event-select select {
+      width: 100%;
+      padding: 11px 14px;
+      font-family: var(--font);
+      font-size: 14px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border-s);
+      border-radius: var(--radius);
+      appearance: none;
+      cursor: pointer;
+    }
+    .event-select select:focus { outline: none; border-color: var(--accent); }
+
+    .password-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .password-group input {
+      flex: 1;
+      padding: 11px 14px;
+      font-family: var(--font);
+      font-size: 14px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border-s);
+      border-radius: var(--radius);
+    }
+    .password-group input:focus { outline: none; border-color: var(--accent); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 11px 20px;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: background .15s, transform .15s;
+    }
+    .btn--primary { background: var(--text); color: #fff; }
+    .btn--primary:hover { background: #2d2d2b; }
+    .btn--full { width: 100%; }
+    .btn--ghost {
+      background: transparent;
+      border: 1px solid var(--border-s);
+      color: var(--text);
+      font-size: 13px;
+      padding: 8px 14px;
+    }
+    .btn--ghost:hover { background: var(--surface2); }
+
+    .lock-error {
+      font-size: 13px;
+      color: #dc2626;
+      margin-bottom: 12px;
+      display: none;
+    }
+    .lock-error.show { display: block; }
+
+    /* --------------------------------------------------------
+       GALERIE
+    -------------------------------------------------------- */
+    #gallery-view { display: none; }
+    #gallery-view.show { display: block; }
+
+    .gallery-header {
+      padding: 32px 20px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .gallery-header__left {}
+    .gallery-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 4px;
+    }
+    .gallery-title {
+      font-family: var(--display);
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 700;
+    }
+    .gallery-count {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .gallery-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    /* Grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 6px;
+      padding: 0 20px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media(min-width:600px) {
+      .photo-grid { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
+    }
+    @media(min-width:900px) {
+      .photo-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
+    }
+    @media(min-width:1100px) {
+      .photo-grid { grid-template-columns: repeat(5, minmax(0,1fr)); }
+    }
+
+    .photo-item {
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--surface2);
+      cursor: pointer;
+      position: relative;
+    }
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .35s ease;
+    }
+    .photo-item:hover img { transform: scale(1.06); }
+    .photo-item__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .photo-item:hover .photo-item__overlay { background: rgba(0,0,0,.25); }
+    .photo-item__overlay i {
+      font-size: 28px;
+      color: #fff;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .photo-item:hover .photo-item__overlay i { opacity: 1; }
+
+    /* Skeleton loading */
+    .skeleton {
+      background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 8px;
+      aspect-ratio: 1;
+    }
+    @keyframes shimmer { from{background-position:200% 0} to{background-position:-200% 0} }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      grid-column: 1/-1;
+    }
+    .empty-state i { font-size: 48px; color: var(--faint); margin-bottom: 12px; }
+    .empty-state p { font-size: 15px; color: var(--muted); }
+
+    /* --------------------------------------------------------
+       LIGHTBOX
+    -------------------------------------------------------- */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.92);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .lightbox.show { display: flex; }
+
+    .lightbox__img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    .lightbox__close {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,.15);
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox__close:hover { background: rgba(255,255,255,.25); }
+
+    .lightbox__nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,.15);
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox__nav:hover { background: rgba(255,255,255,.3); }
+    .lightbox__prev { left: 12px; }
+    .lightbox__next { right: 12px; }
+
+    .lightbox__download {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* --------------------------------------------------------
+       LOGOUT buton
+    -------------------------------------------------------- */
+    .gallery-switch {
+      font-size: 13px;
+      color: var(--muted);
+      cursor: pointer;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0;
+    }
+    .gallery-switch:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav__logo" href="index.html">Epics <span>Photo</span>Booth</a>
+  <a class="nav__back" href="index.html"><i class="ti ti-arrow-left"></i> Înapoi</a>
+</nav>
+
+<!-- LOCK SCREEN -->
+<div class="lock-screen" id="lock-screen">
+  <div class="lock-card">
+    <div class="lock-card__icon"><i class="ti ti-camera"></i></div>
+    <h1 class="lock-card__title">Galeria ta de amintiri</h1>
+    <p class="lock-card__sub">Selectează evenimentul și introdu parola primită de la Epics PhotoBooth.</p>
+
+    <div class="event-select">
+      <select id="event-select">
+        <option value="">— Selectează evenimentul —</option>
+        <!-- Evenimentele se incarca din CONFIG de mai jos -->
+      </select>
+    </div>
+
+    <div class="password-group">
+      <input type="password" id="password-input" placeholder="Parola evenimentului" autocomplete="off"/>
+      <button class="btn btn--primary" onclick="unlock()">
+        <i class="ti ti-arrow-right"></i>
+      </button>
+    </div>
+
+    <p class="lock-error" id="lock-error">Parola incorectă. Încearcă din nou.</p>
+
+    <p style="font-size:12px;color:var(--faint);margin-top:12px">
+      Nu ai parola? Contactează-ne pe <a href="https://wa.me/40735638201" style="color:var(--accent)">WhatsApp</a>.
+    </p>
+  </div>
+</div>
+
+<!-- GALLERY VIEW -->
+<div id="gallery-view">
+  <div class="gallery-header">
+    <div class="gallery-header__left">
+      <p class="gallery-eyebrow" id="gallery-eyebrow">Galerie foto</p>
+      <h2 class="gallery-title" id="gallery-title">Eveniment</h2>
+      <p class="gallery-count" id="gallery-count"></p>
+    </div>
+    <div class="gallery-actions">
+      <button class="btn btn--ghost" onclick="logout()">
+        <i class="ti ti-lock"></i> Schimbă evenimentul
+      </button>
+    </div>
+  </div>
+
+  <div class="photo-grid" id="photo-grid">
+    <!-- Skeletons initiale -->
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox__close" onclick="closeLightbox()"><i class="ti ti-x"></i></button>
+  <button class="lightbox__nav lightbox__prev" onclick="navLightbox(-1)"><i class="ti ti-chevron-left"></i></button>
+  <img class="lightbox__img" id="lightbox-img" src="" alt=""/>
+  <button class="lightbox__nav lightbox__next" onclick="navLightbox(1)"><i class="ti ti-chevron-right"></i></button>
+  <a class="btn btn--ghost lightbox__download" id="lightbox-download" download target="_blank">
+    <i class="ti ti-download"></i> Descarcă
+  </a>
+</div>
+
+<script>
+/* ============================================================
+   CONFIGURARE EVENIMENTE
+   Adauga un rand nou pentru fiecare eveniment.
+   folder_id = ID-ul folderului din Google Drive
+   (il gasesti in URL cand deschizi folderul in Drive)
+   ============================================================ */
+const EVENTS = [
+  // {
+  //   name:      "Nunta Andreea & Andrei",
+  //   date:      "2025-06-15",
+  //   folder_id: "1ABCxyz...",   // <-- ID folder Google Drive
+  //   password:  "epics2025",
+  // },
+
+  // DEMO — sterge asta dupa ce adaugi evenimentele reale
+  {
+    name:      "Eveniment test",
+    date:      "2026-07-10",
+    folder_id: "1QTjrxTZk8TZY10TxoIiVnFJS41xVoTol",
+    password:  "demo",
+  },
+];
+
+/* ============================================================
+   GOOGLE API KEY — doar citire publica, safe de pus in HTML
+   Creeaza una la: console.cloud.google.com → Credentials → API Key
+   Restrictioneaz-o la: Google Drive API + domeniul tau
+   ============================================================ */
+const API_KEY = "AIzaSyAf0SeffJLdEfiyH70s-EUWdixAgIqg41A";
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let currentEvent   = null;
+let allPhotos      = [];
+let lightboxIndex  = 0;
+
+/* ============================================================
+   INIT
+   ============================================================ */
+window.addEventListener("DOMContentLoaded", () => {
+  const sel = document.getElementById("event-select");
+  EVENTS.forEach((ev, i) => {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = `${ev.name} — ${formatDate(ev.date)}`;
+    sel.appendChild(opt);
+  });
+
+  // Enter pe input
+  document.getElementById("password-input").addEventListener("keydown", e => {
+    if (e.key === "Enter") unlock();
+  });
+});
+
+/* ============================================================
+   LOCK / UNLOCK
+   ============================================================ */
+function unlock() {
+  const idx = document.getElementById("event-select").value;
+  const pwd = document.getElementById("password-input").value.trim();
+  const err = document.getElementById("lock-error");
+
+  if (idx === "") { err.textContent = "Selectează un eveniment."; err.classList.add("show"); return; }
+
+  const ev = EVENTS[parseInt(idx)];
+  if (pwd !== ev.password) {
+    err.textContent = "Parolă incorectă. Încearcă din nou.";
+    err.classList.add("show");
+    document.getElementById("password-input").value = "";
+    return;
+  }
+
+  err.classList.remove("show");
+  currentEvent = ev;
+  showGallery(ev);
+}
+
+function logout() {
+  document.getElementById("gallery-view").classList.remove("show");
+  document.getElementById("lock-screen").style.display = "flex";
+  document.getElementById("password-input").value = "";
+  document.getElementById("event-select").value = "";
+  currentEvent = null;
+  allPhotos = [];
+}
+
+/* ============================================================
+   GALERIE
+   ============================================================ */
+async function showGallery(ev) {
+  document.getElementById("lock-screen").style.display = "none";
+  const gv = document.getElementById("gallery-view");
+  gv.classList.add("show");
+
+  document.getElementById("gallery-title").textContent = ev.name;
+  document.getElementById("gallery-eyebrow").textContent = formatDate(ev.date);
+  document.getElementById("gallery-count").textContent = "Se încarcă pozele...";
+
+  // DEMO mode
+  if (ev.folder_id === "DEMO") {
+    renderDemoPhotos();
+    return;
+  }
+
+  await loadDrivePhotos(ev.folder_id);
+}
+
+async function loadDrivePhotos(folderId) {
+  const grid = document.getElementById("photo-grid");
+
+  try {
+    // Listeaza fisierele din folder
+    const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false+and+mimeType+contains+'image/'&fields=files(id,name,thumbnailLink,webContentLink,mimeType)&pageSize=200&key=${API_KEY}`;
+    const res  = await fetch(url);
+    const data = await res.json();
+
+    if (data.error) throw new Error(data.error.message);
+
+    allPhotos = data.files || [];
+    document.getElementById("gallery-count").textContent =
+      allPhotos.length > 0 ? `${allPhotos.length} fotografii` : "Nicio fotografie încă";
+
+    renderPhotos(allPhotos);
+
+  } catch (err) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+      <i class="ti ti-alert-circle"></i>
+      <p>Eroare la încărcare: ${err.message}</p>
+      <p style="margin-top:8px;font-size:12px;color:var(--faint)">Verifică API Key și ID-ul folderului.</p>
+    </div>`;
+  }
+}
+
+function renderPhotos(photos) {
+  const grid = document.getElementById("photo-grid");
+
+  if (photos.length === 0) {
+    grid.innerHTML = `<div class="empty-state">
+      <i class="ti ti-camera-off"></i>
+      <p>Nicio fotografie în acest eveniment încă.<br>Revino în curând!</p>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = "";
+  photos.forEach((photo, i) => {
+    // thumbnail de la Drive (resize la 400px)
+    const thumb = photo.thumbnailLink
+      ? photo.thumbnailLink.replace("=s220", "=s400")
+      : `https://drive.google.com/thumbnail?id=${photo.id}&sz=w400`;
+
+    const div = document.createElement("div");
+    div.className = "photo-item";
+    div.innerHTML = `
+      <img src="${thumb}" alt="${photo.name}" loading="lazy"/>
+      <div class="photo-item__overlay"><i class="ti ti-zoom-in"></i></div>
+    `;
+    div.addEventListener("click", () => openLightbox(i));
+    grid.appendChild(div);
+  });
+}
+
+function renderDemoPhotos() {
+  // Poze demo de pe Epics
+  const demoPhotos = [
+    { id:"d1", name:"demo1.jpg", url:"https://static.wixstatic.com/media/3e3b0b_53ff8088fcd745f89611bb5672c9a9aa~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_53ff8088fcd745f89611bb5672c9a9aa~mv2.jpg" },
+    { id:"d2", name:"demo2.jpg", url:"https://static.wixstatic.com/media/3e3b0b_bbb561a1b64e4f778bc3d0aab6119f7b~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_bbb561a1b64e4f778bc3d0aab6119f7b~mv2.jpg" },
+    { id:"d3", name:"demo3.jpg", url:"https://static.wixstatic.com/media/3e3b0b_4ffc58c3481246e29ea5d745d1b645d9~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_4ffc58c3481246e29ea5d745d1b645d9~mv2.jpg" },
+    { id:"d4", name:"demo4.jpg", url:"https://static.wixstatic.com/media/3e3b0b_e4e8b47c57e344549ada3555b2e675dd~mv2.webp/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_e4e8b47c57e344549ada3555b2e675dd~mv2.webp" },
+    { id:"d5", name:"demo5.jpg", url:"https://static.wixstatic.com/media/3e3b0b_087a87c62d7da4b648472a4d3ec33f6f6~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_87a87c62d7da4b648472a4d3ec33f6f6~mv2.jpg" },
+    { id:"d6", name:"demo6.jpg", url:"https://static.wixstatic.com/media/3e3b0b_089f1a8bba7045afa892d768d3d84ac2~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_089f1a8bba7045afa892d768d3d84ac2~mv2.jpg" },
+  ];
+
+  allPhotos = demoPhotos.map(p => ({...p, thumbnailLink: p.url, webContentLink: p.url}));
+  document.getElementById("gallery-count").textContent = `${allPhotos.length} fotografii (demo)`;
+
+  const grid = document.getElementById("photo-grid");
+  grid.innerHTML = "";
+  allPhotos.forEach((photo, i) => {
+    const div = document.createElement("div");
+    div.className = "photo-item";
+    div.innerHTML = `
+      <img src="${photo.url}" alt="${photo.name}" loading="lazy"/>
+      <div class="photo-item__overlay"><i class="ti ti-zoom-in"></i></div>
+    `;
+    div.addEventListener("click", () => openLightbox(i));
+    grid.appendChild(div);
+  });
+}
+
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
+function openLightbox(index) {
+  lightboxIndex = index;
+  updateLightbox();
+  document.getElementById("lightbox").classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+function navLightbox(dir) {
+  lightboxIndex = (lightboxIndex + dir + allPhotos.length) % allPhotos.length;
+  updateLightbox();
+}
+
+function updateLightbox() {
+  const photo = allPhotos[lightboxIndex];
+  const img   = document.getElementById("lightbox-img");
+  const dl    = document.getElementById("lightbox-download");
+
+  // URL full-size din Drive
+  const fullUrl = photo.url
+    || `https://drive.google.com/uc?export=download&id=${photo.id}`;
+  const viewUrl = photo.thumbnailLink
+    ? photo.thumbnailLink.replace(/=s\d+/, "=s1600")
+    : fullUrl;
+
+  img.src = viewUrl;
+  img.alt = photo.name;
+  dl.href = fullUrl;
+}
+
+// Keyboard nav
+document.addEventListener("keydown", e => {
+  if (!document.getElementById("lightbox").classList.contains("show")) return;
+  if (e.key === "ArrowRight") navLightbox(1);
+  if (e.key === "ArrowLeft")  navLightbox(-1);
+  if (e.key === "Escape")     closeLightbox();
+});
+
+// Click in afara inchide lightbox
+document.getElementById("lightbox").addEventListener("click", function(e) {
+  if (e.target === this) closeLightbox();
+});
+
+/* ============================================================
+   UTILS
+   ============================================================ */
+function formatDate(dateStr) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  return d.toLocaleDateString("ro-RO", { day: "numeric", month: "long", year: "numeric" });
+}
+</script>
+</body>
+</html>
