@@ -1,0 +1,96 @@
+﻿<header class="nav" id="nav">
+  <a class="nav__logo" href="{{base}}index.html">
+    <img src="assets/images/footer-2.png" alt="Epics Photo Booth" class="nav__logo-img"/>
+  </a>
+  <nav class="nav__links" aria-label="Navigație principală">
+    <a href="{{base}}index.html">Acasă</a>
+    <div class="nav__item">
+      <button class="nav__trigger" aria-haspopup="true" aria-expanded="false">
+        Tip Eveniment <i class="ti ti-chevron-down" aria-hidden="true"></i>
+      </button>
+      <div class="nav__dropdown" role="menu">
+        <a href="{{base}}evenimente/nunta.html" role="menuitem"><i class="ti ti-heart" aria-hidden="true"></i> Nuntă</a>
+        <a href="{{base}}evenimente/corporate.html" role="menuitem"><i class="ti ti-building" aria-hidden="true"></i> Corporate</a>
+        <a href="{{base}}evenimente/festivaluri.html" role="menuitem"><i class="ti ti-music" aria-hidden="true"></i> Festivaluri</a>
+        <a href="{{base}}evenimente/activari-brand.html" role="menuitem"><i class="ti ti-speakerphone" aria-hidden="true"></i> Activări de Brand</a>
+        <div class="nav__dropdown-sep"></div>
+        <a href="{{base}}evenimente/branding-cabina.html" role="menuitem"><i class="ti ti-palette" aria-hidden="true"></i> Branding Cabină Foto</a>
+        <a href="{{base}}evenimente/botez.html" role="menuitem"><i class="ti ti-baby-carriage" aria-hidden="true"></i> Botez</a>
+        <a href="{{base}}evenimente/conferinte.html" role="menuitem"><i class="ti ti-presentation" aria-hidden="true"></i> Conferințe</a>
+        <a href="{{base}}evenimente/aniversari.html" role="menuitem"><i class="ti ti-gift" aria-hidden="true"></i> Aniversări</a>
+      </div>
+    </div>
+    <div class="nav__item">
+      <button class="nav__trigger" aria-haspopup="true" aria-expanded="false">
+        Servicii <i class="ti ti-chevron-down" aria-hidden="true"></i>
+      </button>
+      <div class="nav__dropdown nav__dropdown--wide" role="menu">
+        <div class="nav__dropdown-cols">
+          <a href="{{base}}servicii/photo-booth-classic.html" role="menuitem"><i class="ti ti-camera" aria-hidden="true"></i> Photo Booth Classic</a>
+          <a href="{{base}}servicii/magneti.html" role="menuitem"><i class="ti ti-magnet" aria-hidden="true"></i> Photo Booth cu Magneți</a>
+          <a href="{{base}}servicii/polaroid.html" role="menuitem"><i class="ti ti-polaroid" aria-hidden="true"></i> Photo Booth Polaroid</a>
+          <a href="{{base}}servicii/single-photo.html" role="menuitem"><i class="ti ti-photo" aria-hidden="true"></i> Single Photo</a>
+          <a href="{{base}}servicii/guestbook.html" role="menuitem"><i class="ti ti-book" aria-hidden="true"></i> Guestbook</a>
+          <a href="{{base}}servicii/multiple-layout.html" role="menuitem"><i class="ti ti-layout-grid" aria-hidden="true"></i> Multiple Layout</a>
+          <a href="{{base}}servicii/chroma-key.html" role="menuitem"><i class="ti ti-layers" aria-hidden="true"></i> Chroma Key Green Screen</a>
+          <a href="{{base}}servicii/mini-booth.html" role="menuitem"><i class="ti ti-camera-selfie" aria-hidden="true"></i> Mini Photo Booth</a>
+          <a href="{{base}}servicii/insta-print.html" role="menuitem"><i class="ti ti-brand-instagram" aria-hidden="true"></i> Insta Print</a>
+          <a href="{{base}}servicii/magazine-cover.html" role="menuitem"><i class="ti ti-news" aria-hidden="true"></i> Magazine Cover</a>
+          <a href="{{base}}servicii/video-gif-booth.html" role="menuitem"><i class="ti ti-video" aria-hidden="true"></i> Video Booth & GIF Booth</a>
+          <a href="{{base}}servicii/photo-booth-360.html" role="menuitem"><i class="ti ti-rotate-360" aria-hidden="true"></i> Photo Booth 360°</a>
+        </div>
+      </div>
+    </div>
+    <a href="{{base}}despre-noi.html">Despre Noi</a>
+    <a href="{{base}}galerie.html">Galerie</a>
+    <a href="{{base}}contact.html">Contact</a>
+    <a href="{{base}}blog.html">Blog</a>
+  </nav>
+  <a href="{{base}}contact.html" class="btn btn--nav">Cere Ofertă</a>
+  <button class="nav__burger" aria-label="Deschide meniu" aria-expanded="false" aria-controls="mobile-menu">
+    <i class="ti ti-menu-2"></i>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" hidden>
+  <a href="{{base}}index.html" class="mobile-menu__link">Acasă</a>
+  <div class="mobile-menu__group">
+    <button class="mobile-menu__group-trigger" aria-expanded="false">
+      Tip Eveniment <i class="ti ti-chevron-down" aria-hidden="true"></i>
+    </button>
+    <div class="mobile-menu__group-items">
+      <a href="{{base}}evenimente/nunta.html"><i class="ti ti-heart"></i> Nuntă</a>
+      <a href="{{base}}evenimente/corporate.html"><i class="ti ti-building"></i> Corporate</a>
+      <a href="{{base}}evenimente/festivaluri.html"><i class="ti ti-music"></i> Festivaluri</a>
+      <a href="{{base}}evenimente/activari-brand.html"><i class="ti ti-speakerphone"></i> Activări de Brand</a>
+      <a href="{{base}}evenimente/branding-cabina.html"><i class="ti ti-palette"></i> Branding Cabină Foto</a>
+      <a href="{{base}}evenimente/botez.html"><i class="ti ti-baby-carriage"></i> Botez</a>
+      <a href="{{base}}evenimente/conferinte.html"><i class="ti ti-presentation"></i> Conferințe</a>
+      <a href="{{base}}evenimente/aniversari.html"><i class="ti ti-gift"></i> Aniversări</a>
+    </div>
+  </div>
+  <div class="mobile-menu__group">
+    <button class="mobile-menu__group-trigger" aria-expanded="false">
+      Servicii <i class="ti ti-chevron-down" aria-hidden="true"></i>
+    </button>
+    <div class="mobile-menu__group-items">
+      <a href="{{base}}servicii/photo-booth-classic.html"><i class="ti ti-camera"></i> Photo Booth Classic</a>
+      <a href="{{base}}servicii/magneti.html"><i class="ti ti-magnet"></i> Photo Booth cu Magneți</a>
+      <a href="{{base}}servicii/polaroid.html"><i class="ti ti-polaroid"></i> Photo Booth Polaroid</a>
+      <a href="{{base}}servicii/single-photo.html"><i class="ti ti-photo"></i> Single Photo</a>
+      <a href="{{base}}servicii/guestbook.html"><i class="ti ti-book"></i> Guestbook</a>
+      <a href="{{base}}servicii/multiple-layout.html"><i class="ti ti-layout-grid"></i> Multiple Layout</a>
+      <a href="{{base}}servicii/chroma-key.html"><i class="ti ti-layers"></i> Chroma Key Green Screen</a>
+      <a href="{{base}}servicii/mini-booth.html"><i class="ti ti-camera-selfie"></i> Mini Photo Booth</a>
+      <a href="{{base}}servicii/insta-print.html"><i class="ti ti-brand-instagram"></i> Insta Print</a>
+      <a href="{{base}}servicii/magazine-cover.html"><i class="ti ti-news"></i> Magazine Cover</a>
+      <a href="{{base}}servicii/video-gif-booth.html"><i class="ti ti-video"></i> Video Booth & GIF Booth</a>
+      <a href="{{base}}servicii/photo-booth-360.html"><i class="ti ti-rotate-360"></i> Photo Booth 360°</a>
+    </div>
+  </div>
+  <a href="{{base}}despre-noi.html" class="mobile-menu__link">Despre Noi</a>
+  <a href="{{base}}galerie.html" class="mobile-menu__link">Galerie</a>
+  <a href="{{base}}contact.html" class="mobile-menu__link">Contact</a>
+  <a href="{{base}}blog.html" class="mobile-menu__link">Blog</a>
+  <a href="{{base}}contact.html" class="btn btn--primary mobile-menu__cta">Cere ofertă</a>
+</div>

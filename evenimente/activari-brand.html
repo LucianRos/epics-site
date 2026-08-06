@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ro">
 <head>
   <meta charset="UTF-8"/>
@@ -9,113 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.2.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="../style.css"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
 </head>
 <body>
-  <header class="nav" id="nav">
-    <a class="nav__logo" href="../index.html"><img src="https://static.wixstatic.com/media/3e3b0b_c7fc65590563482ba1b93e3be3d27931~mv2.png/v1/fill/w_208,h_128,al_c,q_85,enc_avif,quality_auto/3e3b0b_c7fc65590563482ba1b93e3be3d27931~mv2.png" alt="Epics Photo Booth" class="nav__logo-img"/></a>
-    <nav class="nav__links" aria-label="Navigație principală">
-
-      <a href="../index.html">Acasă</a>
-
-      <!-- DROPDOWN: Tip Eveniment -->
-      <div class="nav__item">
-        <button class="nav__trigger" aria-haspopup="true" aria-expanded="false">
-          Tip Eveniment <i class="ti ti-chevron-down" aria-hidden="true"></i>
-        </button>
-        <div class="nav__dropdown" role="menu">
-          <a href="../evenimente/nunta.html" role="menuitem"><i class="ti ti-heart" aria-hidden="true"></i> Nuntă</a>
-          <a href="../evenimente/corporate.html" role="menuitem"><i class="ti ti-building" aria-hidden="true"></i> Corporate</a>
-          <a href="../evenimente/festivaluri.html" role="menuitem"><i class="ti ti-music" aria-hidden="true"></i> Festivaluri</a>
-          <a href="../evenimente/activari-brand.html" role="menuitem"><i class="ti ti-speakerphone" aria-hidden="true"></i> Activări de Brand</a>
-          <div class="nav__dropdown-sep"></div>
-          <a href="../evenimente/branding-cabina.html" role="menuitem"><i class="ti ti-palette" aria-hidden="true"></i> Branding Cabină Foto</a>
-          <a href="../evenimente/botez.html" role="menuitem"><i class="ti ti-baby-carriage" aria-hidden="true"></i> Botez</a>
-          <a href="../evenimente/conferinte.html" role="menuitem"><i class="ti ti-presentation" aria-hidden="true"></i> Conferințe</a>
-          <a href="../evenimente/aniversari.html" role="menuitem"><i class="ti ti-gift" aria-hidden="true"></i> Aniversări</a>
-        </div>
-      </div>
-
-      <!-- DROPDOWN: Servicii -->
-      <div class="nav__item">
-        <button class="nav__trigger" aria-haspopup="true" aria-expanded="false">
-          Servicii <i class="ti ti-chevron-down" aria-hidden="true"></i>
-        </button>
-        <div class="nav__dropdown nav__dropdown--wide" role="menu">
-          <div class="nav__dropdown-cols">
-            <a href="../servicii/photo-booth-classic.html" role="menuitem"><i class="ti ti-camera" aria-hidden="true"></i> Photo Booth Classic</a>
-            <a href="../servicii/magneti.html" role="menuitem"><i class="ti ti-magnet" aria-hidden="true"></i> Photo Booth cu Magneți</a>
-            <a href="../servicii/polaroid.html" role="menuitem"><i class="ti ti-polaroid" aria-hidden="true"></i> Photo Booth Polaroid</a>
-            <a href="../servicii/single-photo.html" role="menuitem"><i class="ti ti-photo" aria-hidden="true"></i> Single Photo</a>
-            <a href="../servicii/guestbook.html" role="menuitem"><i class="ti ti-book" aria-hidden="true"></i> Guestbook</a>
-            <a href="../servicii/multiple-layout.html" role="menuitem"><i class="ti ti-layout-grid" aria-hidden="true"></i> Multiple Layout</a>
-            <a href="../servicii/chroma-key.html" role="menuitem"><i class="ti ti-layers" aria-hidden="true"></i> Chroma Key Green Screen</a>
-            <a href="../servicii/mini-booth.html" role="menuitem"><i class="ti ti-camera-selfie" aria-hidden="true"></i> Mini Photo Booth</a>
-            <a href="../servicii/insta-print.html" role="menuitem"><i class="ti ti-brand-instagram" aria-hidden="true"></i> Insta Print</a>
-            <a href="../servicii/magazine-cover.html" role="menuitem"><i class="ti ti-news" aria-hidden="true"></i> Magazine Cover</a>
-            <a href="../servicii/video-gif-booth.html" role="menuitem"><i class="ti ti-video" aria-hidden="true"></i> Video Booth & GIF Booth</a>
-            <a href="../servicii/photo-booth-360.html" role="menuitem"><i class="ti ti-rotate-360" aria-hidden="true"></i> Photo Booth 360°</a>
-          </div>
-        </div>
-      </div>
-
-      <a href="../despre-noi.html">Despre Noi</a>
-      <a href="../contact.html">Contact</a>
-      <a href="../blog.html">Blog</a>
-    </nav>
-
-    <a href="../contact.html" class="btn btn--nav">Cere Ofertă</a>
-
-    <button class="nav__burger" aria-label="Deschide meniu" aria-expanded="false" aria-controls="mobile-menu">
-      <i class="ti ti-menu-2"></i>
-    </button>
-  </header>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobile-menu" hidden>
-    <a href="../index.html" class="mobile-menu__link">Acasă</a>
-
-    <div class="mobile-menu__group">
-      <button class="mobile-menu__group-trigger" aria-expanded="false">
-        Tip Eveniment <i class="ti ti-chevron-down" aria-hidden="true"></i>
-      </button>
-      <div class="mobile-menu__group-items">
-        <a href="../evenimente/nunta.html"><i class="ti ti-heart"></i> Nuntă</a>
-        <a href="../evenimente/corporate.html"><i class="ti ti-building"></i> Corporate</a>
-        <a href="../evenimente/festivaluri.html"><i class="ti ti-music"></i> Festivaluri</a>
-        <a href="../evenimente/activari-brand.html"><i class="ti ti-speakerphone"></i> Activări de Brand</a>
-        <a href="../evenimente/branding-cabina.html"><i class="ti ti-palette"></i> Branding Cabină Foto</a>
-        <a href="../evenimente/botez.html"><i class="ti ti-baby-carriage"></i> Botez</a>
-        <a href="../evenimente/conferinte.html"><i class="ti ti-presentation"></i> Conferințe</a>
-        <a href="../evenimente/aniversari.html"><i class="ti ti-gift"></i> Aniversări</a>
-      </div>
-    </div>
-
-    <div class="mobile-menu__group">
-      <button class="mobile-menu__group-trigger" aria-expanded="false">
-        Servicii <i class="ti ti-chevron-down" aria-hidden="true"></i>
-      </button>
-      <div class="mobile-menu__group-items">
-        <a href="../servicii/photo-booth-classic.html"><i class="ti ti-camera"></i> Photo Booth Classic</a>
-        <a href="../servicii/magneti.html"><i class="ti ti-magnet"></i> Photo Booth cu Magneți</a>
-        <a href="../servicii/polaroid.html"><i class="ti ti-polaroid"></i> Photo Booth Polaroid</a>
-        <a href="../servicii/single-photo.html"><i class="ti ti-photo"></i> Single Photo</a>
-        <a href="../servicii/guestbook.html"><i class="ti ti-book"></i> Guestbook</a>
-        <a href="../servicii/multiple-layout.html"><i class="ti ti-layout-grid"></i> Multiple Layout</a>
-        <a href="../servicii/chroma-key.html"><i class="ti ti-layers"></i> Chroma Key Green Screen</a>
-        <a href="../servicii/mini-booth.html"><i class="ti ti-camera-selfie"></i> Mini Photo Booth</a>
-        <a href="../servicii/insta-print.html"><i class="ti ti-brand-instagram"></i> Insta Print</a>
-        <a href="../servicii/magazine-cover.html"><i class="ti ti-news"></i> Magazine Cover</a>
-        <a href="../servicii/video-gif-booth.html"><i class="ti ti-video"></i> Video Booth & GIF Booth</a>
-        <a href="../servicii/photo-booth-360.html"><i class="ti ti-rotate-360"></i> Photo Booth 360°</a>
-      </div>
-    </div>
-
-    <a href="../despre-noi.html" class="mobile-menu__link">Despre Noi</a>
-    <a href="../contact.html" class="mobile-menu__link">Contact</a>
-    <a href="../blog.html" class="mobile-menu__link">Blog</a>
-    <a href="../contact.html" class="btn btn--primary mobile-menu__cta">Cere ofertă</a>
-  </div>
+  <div id="nav-placeholder"></div>
 <main>
   <div class="page-hero">
     <p class="page-hero__label">Tip eveniment</p>
@@ -130,10 +27,10 @@
     <p class="section__label">Galerie</p>
     <h2 class="section__title">Momente reale</h2>
     <div class="pg-grid">
-        <div class="pg-item"><img src="https://static.wixstatic.com/media/3e3b0b_87a87c62d7da4b648472a4d3ec33f6f6~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_87a87c62d7da4b648472a4d3ec33f6f6~mv2.jpg" alt="Photo Booth activare brand" loading="lazy"/></div>
-        <div class="pg-item"><img src="https://static.wixstatic.com/media/3e3b0b_d1a2628f34144ddea433b0b6efac2b0b~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_d1a2628f34144ddea433b0b6efac2b0b~mv2.jpg" alt="Cabina foto brand activation" loading="lazy"/></div>
-        <div class="pg-item"><img src="https://static.wixstatic.com/media/3e3b0b_622ba7db71474b47bed33a1f96a10d3c~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_622ba7db71474b47bed33a1f96a10d3c~mv2.jpg" alt="Activare brand photo booth" loading="lazy"/></div>
-        <div class="pg-item"><img src="https://static.wixstatic.com/media/3e3b0b_0a435a15ead04b2b956606decede3438~mv2.jpeg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_0a435a15ead04b2b956606decede3438~mv2.jpeg" alt="Brand activation cabina foto" loading="lazy"/></div>
+        <div class="pg-item"><img src="../assets/images/img-17.jpg" alt="Photo Booth activare brand" loading="lazy"/></div>
+        <div class="pg-item"><img src="../assets/images/img-28.jpg" alt="Cabina foto brand activation" loading="lazy"/></div>
+        <div class="pg-item"><img src="../assets/images/img-14.jpg" alt="Activare brand photo booth" loading="lazy"/></div>
+        <div class="pg-item"><img src="../assets/images/img-4.jpeg" alt="Brand activation cabina foto" loading="lazy"/></div>
     </div>
   </section>
   <div class="divider"></div>
@@ -176,48 +73,9 @@
     </div>
   </section>
 </main>
-  <footer class="footer">
-    <div class="footer__top">
-      <div class="footer__brand">
-        <img src="https://static.wixstatic.com/media/3e3b0b_c7fc65590563482ba1b93e3be3d27931~mv2.png/v1/fill/w_208,h_128,al_c,q_85,enc_avif,quality_auto/3e3b0b_c7fc65590563482ba1b93e3be3d27931~mv2.png" alt="Epics Photo Booth" class="footer__logo-img" loading="lazy"/>
-        <div class="footer__tagline">Amintiri secundă cu secundă — din 2013</div>
-        <div class="social-row">
-          <a href="https://www.facebook.com/epicsphotobooth" class="social-btn" aria-label="Facebook" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
-          <a href="https://www.instagram.com/epicsphotobooth/" class="social-btn" aria-label="Instagram" target="_blank" rel="noopener"><i class="ti ti-brand-instagram"></i></a>
-          <a href="https://www.tiktok.com/@epicscabinafotoromania" class="social-btn" aria-label="TikTok" target="_blank" rel="noopener"><i class="ti ti-brand-tiktok"></i></a>
-          <a href="https://www.youtube.com/channel/UCDgBANZ-zFwDOyO3zuRZc5g" class="social-btn" aria-label="YouTube" target="_blank" rel="noopener"><i class="ti ti-brand-youtube"></i></a>
-        </div>
-      </div>
-      <nav class="footer__nav" aria-label="Linkuri footer">
-        <div class="footer__col">
-          <div class="footer__col-title">Servicii</div>
-          <a href="../servicii/photo-booth-classic.html">Photo Booth Classic</a>
-          <a href="../servicii/photo-booth-360.html">Photo Booth 360°</a>
-          <a href="../servicii/video-gif-booth.html">Video & GIF Booth</a>
-          <a href="../servicii/magazine-cover.html">Magazine Cover</a>
-          <a href="../servicii/insta-print.html">Insta Print</a>
-        </div>
-        <div class="footer__col">
-          <div class="footer__col-title">Companie</div>
-          <a href="../despre-noi.html">Despre noi</a>
-          <a href="../blog.html">Blog</a>
-          <a href="../contact.html">Contact</a>
-          <a href="#">Termeni & Condiții</a>
-          <a href="#">GDPR</a>
-        </div>
-      </nav>
-    </div>
-    <div class="footer__bottom">
-      <div class="footer__anpc">
-        <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener"><img src="https://static.wixstatic.com/media/3e3b0b_4cd7b359dd2c494da8c9b9628052c742~mv2.png/v1/fill/w_184,h_49,al_c,q_85,enc_avif,quality_auto/anpc-sal%20(1).png" alt="ANPC SAL" loading="lazy"/></a>
-        <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener"><img src="https://static.wixstatic.com/media/3e3b0b_fe3ff63376ca4a25b70a0458af64319c~mv2.png/v1/fill/w_184,h_49,al_c,q_85,enc_avif,quality_auto/anpc-sol%20(1).png" alt="ANPC SOL" loading="lazy"/></a>
-      </div>
-      <div class="footer__copy">
-        <span>© 2025 Epics Photobooth®</span>
-      <span>J12/2461/2017 · CIF 37558414</span>
-      </div>
-    </div>
-  </footer>
-  <script src="../main.js"></script>
+  <div id="footer-placeholder"></div>
+
+  <script src="../assets/js/nav-loader.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>
