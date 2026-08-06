@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ro">
 <head>
   <meta charset="UTF-8"/>
@@ -615,12 +615,12 @@ function renderPhotos(photos) {
 function renderDemoPhotos() {
   // Poze demo de pe Epics
   const demoPhotos = [
-    { id:"d1", name:"demo1.jpg", url:"https://static.wixstatic.com/media/3e3b0b_53ff8088fcd745f89611bb5672c9a9aa~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_53ff8088fcd745f89611bb5672c9a9aa~mv2.jpg" },
-    { id:"d2", name:"demo2.jpg", url:"https://static.wixstatic.com/media/3e3b0b_bbb561a1b64e4f778bc3d0aab6119f7b~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_bbb561a1b64e4f778bc3d0aab6119f7b~mv2.jpg" },
-    { id:"d3", name:"demo3.jpg", url:"https://static.wixstatic.com/media/3e3b0b_4ffc58c3481246e29ea5d745d1b645d9~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_4ffc58c3481246e29ea5d745d1b645d9~mv2.jpg" },
-    { id:"d4", name:"demo4.jpg", url:"https://static.wixstatic.com/media/3e3b0b_e4e8b47c57e344549ada3555b2e675dd~mv2.webp/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_e4e8b47c57e344549ada3555b2e675dd~mv2.webp" },
+    { id:"d1", name:"demo1.jpg", url:"assets/images/img-13.jpg" },
+    { id:"d2", name:"demo2.jpg", url:"assets/images/img-24.jpg" },
+    { id:"d3", name:"demo3.jpg", url:"assets/images/img-11.jpg" },
+    { id:"d4", name:"demo4.jpg", url:"assets/images/img-34.webp" },
     { id:"d5", name:"demo5.jpg", url:"https://static.wixstatic.com/media/3e3b0b_087a87c62d7da4b648472a4d3ec33f6f6~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_87a87c62d7da4b648472a4d3ec33f6f6~mv2.jpg" },
-    { id:"d6", name:"demo6.jpg", url:"https://static.wixstatic.com/media/3e3b0b_089f1a8bba7045afa892d768d3d84ac2~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/3e3b0b_089f1a8bba7045afa892d768d3d84ac2~mv2.jpg" },
+    { id:"d6", name:"demo6.jpg", url:"assets/images/img-3.jpg" },
   ];
 
   allPhotos = demoPhotos.map(p => ({...p, thumbnailLink: p.url, webContentLink: p.url}));
@@ -699,5 +699,7 @@ function formatDate(dateStr) {
   return d.toLocaleDateString("ro-RO", { day: "numeric", month: "long", year: "numeric" });
 }
 </script>
+  <script src="assets/js/nav-loader.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

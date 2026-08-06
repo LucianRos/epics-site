@@ -1,0 +1,301 @@
+/* ============================================================
+   NAV — Meniu principal + Mobile menu
+   ============================================================ */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: 0 var(--pad-page);
+  height: 58px;
+  background: var(--clr-surface);
+  border-bottom: 1px solid var(--clr-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav__logo {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  flex-shrink: 0;
+}
+.nav__logo span {
+  color: var(--clr-accent);
+}
+.nav__links {
+  display: none;
+  gap: var(--space-lg);
+}
+.nav__links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--clr-text-muted);
+  transition: color var(--transition);
+}
+.nav__links a:hover,
+.nav__links a.active {
+  color: var(--clr-text);
+}
+.nav__burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: none;
+  border: 1px solid var(--clr-border-strong);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--clr-text);
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+  position: fixed;
+  top: 58px;
+  left: 0;
+  right: 0;
+  background: var(--clr-surface);
+  border-bottom: 1px solid var(--clr-border);
+  padding: var(--space-md) var(--pad-page) var(--space-lg);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  animation: slideDown 0.18s ease;
+}
+.mobile-menu[hidden] {
+  display: none;
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.mobile-menu__link {
+  display: block;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--clr-text);
+  border-bottom: 1px solid var(--clr-border);
+}
+.mobile-menu__link:last-of-type {
+  border-bottom: none;
+}
+.mobile-menu__cta {
+  margin-top: var(--space-md);
+  text-align: center;
+}
+
+/* ============================================================
+   DROPDOWN NAV
+   ============================================================ */
+
+.nav__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav__trigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--clr-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--font-body);
+  transition: color var(--transition);
+  white-space: nowrap;
+}
+.nav__trigger:hover,
+.nav__trigger[aria-expanded="true"] {
+  color: var(--clr-text);
+}
+.nav__trigger .ti {
+  font-size: 14px;
+  transition: transform 0.2s ease;
+}
+.nav__trigger[aria-expanded="true"] .ti {
+  transform: rotate(180deg);
+}
+
+.nav__dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 220px;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: 12px;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.09),
+    0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 6px;
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-6px);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    visibility 0.18s;
+  pointer-events: none;
+}
+
+.nav__item:hover .nav__dropdown,
+.nav__item:focus-within .nav__dropdown,
+.nav__dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.nav__dropdown::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+
+.nav__dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--clr-text-muted);
+  border-radius: 8px;
+  transition:
+    background var(--transition),
+    color var(--transition);
+}
+.nav__dropdown a:hover {
+  background: var(--clr-surface-alt);
+  color: var(--clr-text);
+}
+.nav__dropdown a .ti {
+  font-size: 15px;
+  color: var(--clr-accent);
+  flex-shrink: 0;
+}
+
+.nav__dropdown-sep {
+  height: 1px;
+  background: var(--clr-border);
+  margin: 4px 6px;
+}
+
+.nav__dropdown--wide {
+  min-width: 460px;
+  left: 50%;
+}
+.nav__dropdown--wide .nav__dropdown-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 4px;
+}
+
+/* MOBILE MENU — acordeon dropdown */
+.mobile-menu__group {
+  border-bottom: 1px solid var(--clr-border);
+}
+.mobile-menu__group-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--clr-text);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+.mobile-menu__group-trigger .ti {
+  font-size: 16px;
+  transition: transform 0.2s ease;
+  color: var(--clr-text-muted);
+}
+.mobile-menu__group-trigger[aria-expanded="true"] .ti {
+  transform: rotate(180deg);
+}
+
+.mobile-menu__group-items {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 10px 12px;
+  gap: 2px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.25s ease;
+}
+.mobile-menu__group-items.open {
+  max-height: 600px;
+}
+.mobile-menu__group-items a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 4px;
+  font-size: 14px;
+  color: var(--clr-text-muted);
+  border-radius: 6px;
+  transition: color var(--transition);
+}
+.mobile-menu__group-items a:hover {
+  color: var(--clr-text);
+}
+.mobile-menu__group-items a .ti {
+  font-size: 14px;
+  color: var(--clr-accent);
+}
+
+/* NAV — logo imagine */
+.nav__logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ============================================================
+   NAV — Responsive
+   ============================================================ */
+@media (min-width: 768px) {
+  .nav__links {
+    display: flex;
+  }
+  .nav__burger {
+    display: none;
+  }
+  .mobile-menu {
+    display: none !important;
+  }
+}
+@media (min-width: 1100px) {
+  .nav {
+    padding: 0 60px;
+  }
+}
