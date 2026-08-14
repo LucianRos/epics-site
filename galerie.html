@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.2.0/tabler-icons.min.css"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
   <style>
     /* --------------------------------------------------------
        BAZA
@@ -37,39 +38,6 @@
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
-
-    /* --------------------------------------------------------
-       NAV
-    -------------------------------------------------------- */
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      height: 58px;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    .nav__logo {
-      font-family: var(--display);
-      font-size: 17px;
-      font-weight: 700;
-      text-decoration: none;
-      color: var(--text);
-    }
-    .nav__logo span { color: var(--accent); }
-    .nav__back {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      color: var(--muted);
-      text-decoration: none;
-    }
-    .nav__back:hover { color: var(--text); }
 
     /* --------------------------------------------------------
        LOCK SCREEN
@@ -377,10 +345,7 @@
 </head>
 <body>
 
-<nav class="nav">
-  <a class="nav__logo" href="index.html">Epics <span>Photo</span>Booth</a>
-  <a class="nav__back" href="index.html"><i class="ti ti-arrow-left"></i> Înapoi</a>
-</nav>
+<div id="nav-placeholder"></div>
 
 <!-- LOCK SCREEN -->
 <div class="lock-screen" id="lock-screen">
@@ -699,6 +664,7 @@ function formatDate(dateStr) {
   return d.toLocaleDateString("ro-RO", { day: "numeric", month: "long", year: "numeric" });
 }
 </script>
+  <div id="footer-placeholder"></div>
   <script src="assets/js/nav-loader.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
