@@ -1,6 +1,12 @@
-/* ============================================================
+﻿/* ============================================================
    NAV — Meniu principal + Mobile menu
    ============================================================ */
+
+#nav-placeholder {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
 .nav {
   display: flex;
@@ -8,18 +14,15 @@
   justify-content: space-between;
   gap: var(--space-md);
   padding: 0 var(--pad-page);
-  height: 58px;
+  height: 4.5rem;
   background: var(--clr-surface);
   border-bottom: 1px solid var(--clr-border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
 }
 .nav__logo {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 700;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.019rem;
   flex-shrink: 0;
 }
 .nav__logo span {
@@ -30,7 +33,7 @@
   gap: var(--space-lg);
 }
 .nav__links a {
-  font-size: 13px;
+  font-size: 0.9375rem;
   font-weight: 500;
   color: var(--clr-text-muted);
   transition: color var(--transition);
@@ -43,20 +46,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 2.375rem;
+  height: 2.375rem;
   background: none;
   border: 1px solid var(--clr-border-strong);
   border-radius: var(--radius);
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1.125rem;
   color: var(--clr-text);
 }
 
 /* MOBILE MENU */
 .mobile-menu {
   position: fixed;
-  top: 58px;
+  top: 4.5rem;
   left: 0;
   right: 0;
   background: var(--clr-surface);
@@ -74,7 +77,7 @@
 @keyframes slideDown {
   from {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(-0.5rem);
   }
   to {
     opacity: 1;
@@ -83,8 +86,8 @@
 }
 .mobile-menu__link {
   display: block;
-  padding: 10px 0;
-  font-size: 15px;
+  padding: 0.625rem 0;
+  font-size: 0.9375rem;
   font-weight: 500;
   color: var(--clr-text);
   border-bottom: 1px solid var(--clr-border);
@@ -110,8 +113,8 @@
 .nav__trigger {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 13px;
+  gap: 0.25rem;
+  font-size: 0.9375rem;
   font-weight: 500;
   color: var(--clr-text-muted);
   background: none;
@@ -127,7 +130,7 @@
   color: var(--clr-text);
 }
 .nav__trigger .ti {
-  font-size: 14px;
+  font-size: 0.875rem;
   transition: transform 0.2s ease;
 }
 .nav__trigger[aria-expanded="true"] .ti {
@@ -136,21 +139,21 @@
 
 .nav__dropdown {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 0.625rem);
   left: 50%;
   transform: translateX(-50%);
-  min-width: 220px;
+  min-width: 13.75rem;
   background: var(--clr-surface);
   border: 1px solid var(--clr-border);
-  border-radius: 12px;
+  border-radius: 0.75rem;
   box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.09),
-    0 2px 6px rgba(0, 0, 0, 0.05);
-  padding: 6px;
+    0 0.5rem 1.5rem rgba(0, 0, 0, 0.09),
+    0 0.125rem 0.375rem rgba(0, 0, 0, 0.05);
+  padding: 0.375rem;
   z-index: 200;
   opacity: 0;
   visibility: hidden;
-  transform: translateX(-50%) translateY(-6px);
+  transform: translateX(-50%) translateY(-0.375rem);
   transition:
     opacity 0.18s ease,
     transform 0.18s ease,
@@ -170,21 +173,21 @@
 .nav__dropdown::before {
   content: "";
   position: absolute;
-  top: -10px;
+  top: -0.625rem;
   left: 0;
   right: 0;
-  height: 10px;
+  height: 0.625rem;
 }
 
 .nav__dropdown a {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 9px 12px;
-  font-size: 13px;
+  gap: 0.625rem;
+  padding: 0.5625rem 0.75rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: var(--clr-text-muted);
-  border-radius: 8px;
+  border-radius: 0.5rem;
   transition:
     background var(--transition),
     color var(--transition);
@@ -194,7 +197,7 @@
   color: var(--clr-text);
 }
 .nav__dropdown a .ti {
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: var(--clr-accent);
   flex-shrink: 0;
 }
@@ -202,17 +205,17 @@
 .nav__dropdown-sep {
   height: 1px;
   background: var(--clr-border);
-  margin: 4px 6px;
+  margin: 0.25rem 0.375rem;
 }
 
 .nav__dropdown--wide {
-  min-width: 460px;
+  min-width: 28.75rem;
   left: 50%;
 }
 .nav__dropdown--wide .nav__dropdown-cols {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0 4px;
+  gap: 0 0.25rem;
 }
 
 /* MOBILE MENU — acordeon dropdown */
@@ -224,8 +227,8 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 12px 0;
-  font-size: 15px;
+  padding: 0.75rem 0;
+  font-size: 0.9375rem;
   font-weight: 500;
   color: var(--clr-text);
   background: none;
@@ -234,7 +237,7 @@
   font-family: var(--font-body);
 }
 .mobile-menu__group-trigger .ti {
-  font-size: 16px;
+  font-size: 1rem;
   transition: transform 0.2s ease;
   color: var(--clr-text-muted);
 }
@@ -245,36 +248,36 @@
 .mobile-menu__group-items {
   display: flex;
   flex-direction: column;
-  padding: 0 0 10px 12px;
-  gap: 2px;
+  padding: 0 0 0.625rem 0.75rem;
+  gap: 0.125rem;
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.25s ease;
 }
 .mobile-menu__group-items.open {
-  max-height: 600px;
+  max-height: 37.5rem;
 }
 .mobile-menu__group-items a {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 4px;
-  font-size: 14px;
+  gap: 0.5rem;
+  padding: 0.5rem 0.25rem;
+  font-size: 0.875rem;
   color: var(--clr-text-muted);
-  border-radius: 6px;
+  border-radius: 0.375rem;
   transition: color var(--transition);
 }
 .mobile-menu__group-items a:hover {
   color: var(--clr-text);
 }
 .mobile-menu__group-items a .ti {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--clr-accent);
 }
 
 /* NAV — logo imagine */
 .nav__logo-img {
-  height: 40px;
+  height: 2.5rem;
   width: auto;
   display: block;
   object-fit: contain;
@@ -296,6 +299,6 @@
 }
 @media (min-width: 1100px) {
   .nav {
-    padding: 0 60px;
+    padding: 0 3.75rem;
   }
 }
