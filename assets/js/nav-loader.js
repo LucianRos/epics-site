@@ -32,6 +32,9 @@
         navPlaceholder.innerHTML = html;
         initNav();
       });
+  } else if (document.getElementById('nav')) {
+    // Nav already in the DOM (e.g. servicii pages) — just init events
+    initNav();
   }
 
   // Load footer
