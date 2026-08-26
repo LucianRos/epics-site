@@ -87,21 +87,24 @@
     var burger = document.querySelector('.nav__burger');
     var menu = document.getElementById('mobile-menu');
     if (burger && menu) {
+      var svgHamburger = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path fill-rule="evenodd" clip-rule="evenodd" d="M20.75 7C20.75 7.41421 20.4142 7.75 20 7.75L4 7.75C3.58579 7.75 3.25 7.41421 3.25 7C3.25 6.58579 3.58579 6.25 4 6.25L20 6.25C20.4142 6.25 20.75 6.58579 20.75 7Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M20.75 12C20.75 12.4142 20.4142 12.75 20 12.75L4 12.75C3.58579 12.75 3.25 12.4142 3.25 12C3.25 11.5858 3.58579 11.25 4 11.25L20 11.25C20.4142 11.25 20.75 11.5858 20.75 12Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M20.75 17C20.75 17.4142 20.4142 17.75 20 17.75L4 17.75C3.58579 17.75 3.25 17.4142 3.25 17C3.25 16.5858 3.58579 16.25 4 16.25L20 16.25C20.4142 16.25 20.75 16.5858 20.75 17Z" fill="currentColor"/></svg>';
+      var svgClose = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414z" fill="currentColor"/></svg>';
       function openMenu() {
         menu.hidden = false;
         burger.setAttribute('aria-expanded', 'true');
-        burger.innerHTML = '<i class="ti ti-x"></i>';
+        burger.innerHTML = svgClose;
         document.addEventListener('keydown', onEsc);
       }
       function closeMenu() {
         menu.hidden = true;
         burger.setAttribute('aria-expanded', 'false');
-        burger.innerHTML = '<i class="ti ti-menu-2"></i>';
+        burger.innerHTML = svgHamburger;
         document.removeEventListener('keydown', onEsc);
       }
       function onEsc(e) { if (e.key === 'Escape') closeMenu(); }
 
-      burger.addEventListener('click', function () {
+      burger.addEventListener('click', function (e) {
+        e.stopPropagation();
         menu.hidden ? openMenu() : closeMenu();
       });
 
@@ -110,7 +113,7 @@
       });
 
       document.addEventListener('click', function (e) {
-        if (!menu.hidden && !menu.contains(e.target) && e.target !== burger) closeMenu();
+        if (!menu.hidden && !menu.contains(e.target) && !burger.contains(e.target)) closeMenu();
       });
     }
 

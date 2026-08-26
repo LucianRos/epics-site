@@ -55,6 +55,9 @@
   font-size: 1.125rem;
   color: var(--clr-text);
 }
+.nav__burger svg {
+  pointer-events: none;
+}
 
 /* MOBILE MENU */
 .mobile-menu {
