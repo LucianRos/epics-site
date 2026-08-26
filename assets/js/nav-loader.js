@@ -48,6 +48,16 @@
       });
   }
 
+  var banerOfertaPlaceholder = document.getElementById('baner-oferta-placeholder');
+  if (banerOfertaPlaceholder) {
+    fetch(base + 'baner-oferta.html')
+      .then(function (r) { return r.text(); })
+      .then(function (html) {
+        html = html.replace(/\{\{base\}\}/g, base);
+        banerOfertaPlaceholder.innerHTML = html;
+      });
+  }
+
   function initNav() {
     /* DROPDOWN NAV (desktop) */
     document.querySelectorAll('.nav__trigger').forEach(function (trigger) {
