@@ -38,6 +38,67 @@
   targets.forEach(function (el) { el.classList.add('reveal'); observer.observe(el); });
 })();
 
+/* ---- TESTIMONIALS CAROUSEL ------------------------------- */
+(function () {
+  var carousel = document.getElementById('testimonialsCarousel');
+  if (!carousel) return;
+  var track = carousel.querySelector('.testimonials-track');
+  var dotsContainer = document.getElementById('carouselDots');
+  var items = Array.prototype.slice.call(track.querySelectorAll('.testimonial'));
+  var total = items.length;
+  var current = 0;
+
+  function getVisible() { return window.innerWidth >= 768 ? 2 : 1; }
+
+  function buildDots() {
+    dotsContainer.innerHTML = '';
+    var pages = Math.ceil(total / getVisible());
+    for (var i = 0; i < pages; i++) {
+      var btn = document.createElement('button');
+      btn.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      btn.setAttribute('aria-label', 'Pagina ' + (i + 1));
+      btn.dataset.index = i;
+      btn.addEventListener('click', function () { goTo(parseInt(this.dataset.index)); });
+      dotsContainer.appendChild(btn);
+    }
+  }
+
+  function updateDots() {
+    var page = Math.round(current / getVisible());
+    dotsContainer.querySelectorAll('.carousel-dot').forEach(function (d, i) {
+      d.classList.toggle('active', i === page);
+    });
+  }
+
+  function goTo(page) {
+    var visible = getVisible();
+    var maxPage = Math.ceil(total / visible) - 1;
+    page = Math.max(0, Math.min(page, maxPage));
+    current = page * visible;
+    var gap = 16;
+    var itemWidth = items[0].offsetWidth;
+    track.scrollTo({ left: current * (itemWidth + gap), behavior: 'smooth' });
+    updateDots();
+  }
+
+  carousel.querySelector('.carousel-btn--prev').addEventListener('click', function () {
+    goTo(Math.round(current / getVisible()) - 1);
+  });
+  carousel.querySelector('.carousel-btn--next').addEventListener('click', function () {
+    goTo(Math.round(current / getVisible()) + 1);
+  });
+
+  track.addEventListener('scroll', function () {
+    var gap = 16;
+    var itemWidth = items[0].offsetWidth;
+    current = Math.round(track.scrollLeft / (itemWidth + gap));
+    updateDots();
+  });
+
+  buildDots();
+  window.addEventListener('resize', function () { buildDots(); goTo(0); });
+})();
+
 /* ---- SMOOTH SCROLL ---------------------------------------- */
 (function () {
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
