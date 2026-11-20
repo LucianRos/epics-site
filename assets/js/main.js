@@ -112,6 +112,29 @@
   });
 })();
 
+/* ---- FAQ SCHEMA (FAQPage) --------------------------------- */
+(function () {
+  var entities = [];
+  document.querySelectorAll('.prose h3').forEach(function (h3) {
+    var p = h3.nextElementSibling;
+    if (!p || p.tagName !== 'P' || !h3.textContent.trim()) return;
+    entities.push({
+      '@type': 'Question',
+      name: h3.textContent.trim(),
+      acceptedAnswer: { '@type': 'Answer', text: p.textContent.trim() }
+    });
+  });
+  if (!entities.length) return;
+  var script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: entities
+  });
+  document.head.appendChild(script);
+})();
+
 /* ---- CONTACT FORM ----------------------------------------- */
 (function () {
   var form = document.getElementById('contact-form');
